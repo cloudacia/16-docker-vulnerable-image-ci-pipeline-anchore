@@ -2,8 +2,7 @@ pipeline {
   environment {
     registry = 'dockerhub.com'
     registryCredential = 'dockerhub-registry'
-    repository = 'vulnerables/web-dvwa'
-    imageLine = 'registry.gitlab.com/bhearn/jenkins-demo:latest'
+    repository = 'vulnerables/web-dvwa'    
     imageLine = 'dockerhub.com/eduarte/web-dvwa:lastest'
   }
   agent any
