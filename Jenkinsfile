@@ -15,7 +15,7 @@ pipeline {
       steps {
         script {
           docker.withRegistry(registryCredential) {
-            Dockerimage = docker.build(repository)
+            DockerImage = docker.build(repository)
           }
         }
       }
@@ -23,7 +23,7 @@ pipeline {
 
     stage('Push image built') {
       steps {
-        Dockerimage.push()        
+        DockerImage.push()        
       }
     }
 
