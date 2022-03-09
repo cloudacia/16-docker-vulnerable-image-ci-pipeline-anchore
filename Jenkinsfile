@@ -13,7 +13,6 @@ pipeline {
     }
     stage('Build image and push to registry') {
       steps {
-        sh 'docker --version'
         script {
           docker.withRegistry(registryCredential) {
             def image = docker.build(repository)
@@ -21,12 +20,23 @@ pipeline {
         }
       }
     }
-    stage('Analyze with Anchore plugin') {
+
+    stage('Push image built') {
       steps {
-        writeFile file: 'anchore_images', text: imageLine
-        anchore name: 'anchore_images'
+        script {
+          image.push()
+        }
       }
     }
+
+
+    //stage('Analyze with Anchore plugin') {
+    //  steps {
+    //    writeFile file: 'anchore_images', text: imageLine
+    //    anchore name: 'anchore_images'
+    //  }
+    //}
+
     //stage('Build and push stable image to registry') {
     //  steps {
     //    script {
