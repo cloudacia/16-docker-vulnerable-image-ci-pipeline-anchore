@@ -16,7 +16,7 @@ pipeline {
         sh 'docker --version'
         script {
           docker.withRegistry(registryCredential) {
-            def image = docker.build(repository)            
+            def image = docker.build(repository)
           }
         }
       }
@@ -35,7 +35,7 @@ pipeline {
     //        image.push()
     //      }
     //    }
-      }
+    //  }
     }
   }
 }
