@@ -1,8 +1,7 @@
 pipeline {
   environment {
     registryCredential = 'dockerhub-registry'
-    repository = 'eduarte/web-dvwa'
-    imageLine = 'dockerhub.com/eduarte/web-dvwa:lastest'
+    repository = 'eduarte/web-dvwa'    
   }
   agent any
   stages {
@@ -11,10 +10,19 @@ pipeline {
         checkout scm
       }
     }
-    stage('Build image and push to registry') {
+    stage('Build image') {
       steps {
         script {
-            DockerImage = docker.build(repository)          
+            DockerImage = docker.build(repository)
+        }
+      }
+    }
+    stage('Push image') {
+      steps {
+        script {
+          docker.WithRegistry('', registryCredential) {
+            DockerImage.push()
+          }
         }
       }
     }
