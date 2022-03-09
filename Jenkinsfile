@@ -22,7 +22,7 @@ pipeline {
       steps {
         script {
           docker.WithRegistry('', registryCredential) {
-            DockerImage.push()
+            //DockerImage.push()
           }
         }
       }
