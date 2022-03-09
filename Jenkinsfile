@@ -23,7 +23,7 @@ pipeline {
     stage('Push image to registry') {
       steps {
         script {
-          DockerImage.push()
+          DockerImage.push(imageLine)
         }
       }
     }
