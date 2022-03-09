@@ -14,8 +14,8 @@ pipeline {
     }
     stage('Build image') {
       steps {
-        Random rnd = new Random()
         script {
+            Random rnd = new Random()
             DockerImage = docker.build registry + ":$BUILD_NUMBER" + rnd
         }
       }
