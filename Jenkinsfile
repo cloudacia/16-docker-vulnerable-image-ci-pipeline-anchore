@@ -20,32 +20,5 @@ pipeline {
         }
       }
     }
-
-    stage('Push image built') {
-      steps {
-        docker.withRegistry(registryCredential) {
-          DockerImage.push()
-        }
-      }
-    }
-
-
-    //stage('Analyze with Anchore plugin') {
-    //  steps {
-    //    writeFile file: 'anchore_images', text: imageLine
-    //    anchore name: 'anchore_images'
-    //  }
-    //}
-
-    //stage('Build and push stable image to registry') {
-    //  steps {
-    //    script {
-    //      docker.withRegistry('https://' + registry, registryCredential) {
-    //        def image = docker.build(repository + ':prod')
-    //        image.push()
-    //      }
-    //    }
-    //  }
-    //}
   }
 }
