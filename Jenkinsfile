@@ -1,7 +1,7 @@
 pipeline {
   environment {
     registryCredential = 'dockerhub-registry'
-    repository = 'eduarte/web-dvwa'    
+    registry = 'eduarte/web-dvwa'
   }
   agent any
   stages {
@@ -13,11 +13,11 @@ pipeline {
     stage('Build image') {
       steps {
         script {
-            DockerImage = docker.build(repository)
+            DockerImage = docker.build registry + ":$BUILD_NUMBER"
         }
       }
     }
-    stage('Push image') {
+    stage('Deploy image') {
       steps {
         script {
           docker.WithRegistry('', registryCredential) {
