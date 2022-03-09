@@ -1,7 +1,7 @@
 pipeline {
   environment {
     registryCredential = 'dockerhub-registry'
-    repository = 'vulnerables/web-dvwa'
+    repository = 'eduarte/web-dvwa'
     imageLine = 'dockerhub.com/eduarte/web-dvwa:lastest'
   }
   agent any
@@ -23,7 +23,7 @@ pipeline {
     stage('Push image to registry') {
       steps {
         script {
-          DockerImage.push(imageLine)
+          DockerImage.push()
         }
       }
     }
