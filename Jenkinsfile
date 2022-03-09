@@ -34,5 +34,10 @@ pipeline {
         anchore name: 'anchore_images'
       }
     }
+    stage('Removing image') {
+      steps {
+        sh 'docker image rmi $registry:$BUILD_NUMBER'
+      }
+    }
   }
 }
