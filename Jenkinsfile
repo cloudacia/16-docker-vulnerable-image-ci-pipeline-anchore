@@ -23,7 +23,9 @@ pipeline {
 
     stage('Push image built') {
       steps {
-        DockerImage.push()        
+        docker.withRegistry(registryCredential) {
+          DockerImage.push()
+        }
       }
     }
 
