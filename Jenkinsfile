@@ -27,5 +27,10 @@ pipeline {
         }
       }
     }
+    stage('Anallyze image with Anchore'){
+      steps {
+        anchore name: registry
+      }
+    }
   }
 }
