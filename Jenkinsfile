@@ -3,6 +3,7 @@ pipeline {
     registryCredential = 'dockerhub-registry'
     registry = 'eduarte/web-dvwa'
     dockerImage = ''
+    imageLine = 'https://hub.docker.com/repository/docker/eduarte/web-dvwa'
   }
   agent any
   stages {
@@ -29,7 +30,8 @@ pipeline {
     }
     stage('Anallyze image with Anchore'){
       steps {
-        anchore name: registry
+        writeFile file: 'anchore_images', text: imageLine
+        anchore name: 'anchore_images'
       }
     }
   }
