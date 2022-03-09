@@ -1,5 +1,5 @@
 pipeline {
-  environment {    
+  environment {
     registryCredential = 'dockerhub-registry'
     repository = 'vulnerables/web-dvwa'
     imageLine = 'dockerhub.com/eduarte/web-dvwa:lastest'
@@ -16,8 +16,7 @@ pipeline {
         sh 'docker --version'
         script {
           docker.withRegistry(registryCredential) {
-            def image = docker.build(repository)
-            image.push()
+            def image = docker.build(repository)            
           }
         }
       }
@@ -28,14 +27,14 @@ pipeline {
         anchore name: 'anchore_images'
       }
     }
-    stage('Build and push stable image to registry') {
-      steps {
-        script {
-          docker.withRegistry('https://' + registry, registryCredential) {
-            def image = docker.build(repository + ':prod')
-            image.push()
-          }
-        }
+    //stage('Build and push stable image to registry') {
+    //  steps {
+    //    script {
+    //      docker.withRegistry('https://' + registry, registryCredential) {
+    //        def image = docker.build(repository + ':prod')
+    //        image.push()
+    //      }
+    //    }
       }
     }
   }
