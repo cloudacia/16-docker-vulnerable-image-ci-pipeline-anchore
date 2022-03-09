@@ -16,7 +16,7 @@ pipeline {
       steps {
         sh 'docker --version'
         script {
-          docker.withRegistry('https://' + registry, registryCredential) {
+          docker.withRegistry(registryCredential) {
             def image = docker.build(repository)
             image.push()
           }
