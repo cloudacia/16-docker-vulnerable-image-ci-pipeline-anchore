@@ -3,7 +3,7 @@ pipeline {
     registryCredential = 'dockerhub-registry'
     registry = 'eduarte/web-dvwa'
     dockerImage = ''
-    imageLine = 'eduarte/web-dvwa'
+    imageLine = 'docker.io/eduarte/web-dvwa'
   }
   agent any
   stages {
