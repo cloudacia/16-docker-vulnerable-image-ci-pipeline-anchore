@@ -2,6 +2,7 @@ pipeline {
   environment {
     registryCredential = 'dockerhub-registry'
     registry = 'eduarte/web-dvwa'
+    dockerImage = ''
   }
   agent any
   stages {
